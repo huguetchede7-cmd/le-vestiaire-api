@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\FlocageController;
 use App\Http\Controllers\Api\BadgeController;
 use App\Http\Controllers\Api\EmballageController;
 use App\Http\Controllers\Api\CommandeController;
+use App\Http\Controllers\Api\AdresseController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function () {
@@ -67,6 +68,12 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/emballages', [EmballageController::class, 'store']);
     Route::put('/emballages/{id}', [EmballageController::class, 'update']);
     Route::delete('/emballages/{id}', [EmballageController::class, 'destroy']);
+
+    Route::get('/adresses', [AdresseController::class, 'index']);
+    Route::get('/adresses/{id}', [AdresseController::class, 'show']);
+    Route::post('/adresses', [AdresseController::class, 'store']);
+    Route::put('/adresses/{id}', [AdresseController::class, 'update']);
+    Route::delete('/adresses/{id}', [AdresseController::class, 'destroy']);
 
     Route::get('/commandes', [CommandeController::class, 'index']);
     Route::get('/commandes/{id}', [CommandeController::class, 'show']);
