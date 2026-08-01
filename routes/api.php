@@ -76,6 +76,7 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/adresses/{id}', [AdresseController::class, 'destroy']);
 
     Route::get('/commandes', [CommandeController::class, 'index']);
+    Route::get('/admin/commandes', [CommandeController::class, 'adminIndex']);
     Route::get('/commandes/{id}', [CommandeController::class, 'show']);
     Route::post('/commandes', [CommandeController::class, 'store']);
     Route::put('/commandes/{id}/statut', [CommandeController::class, 'updateStatut']);

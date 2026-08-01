@@ -146,4 +146,23 @@ class CommandeController extends Controller
 
         return response()->json($commande);
     }
+    
+    // Liste de toutes les commandes (admin uniquement)
+    public function adminIndex()
+    {
+        if (Auth::guard('api')->user()->role !== 'admin') {
+            return response()->json(['message' => 'Acces reserve aux administrateurs.'], 403);
+        }
+
+        $commandes = Commande::with([
+            'user',
+            'lignes.varianteProduit.produit',
+            'lignes.varianteProduit.taille',
+            'paiement',
+        ])
+            ->orderByDesc('created_at')
+            ->get();
+
+        return response()->json($commandes);
+    }
 }
