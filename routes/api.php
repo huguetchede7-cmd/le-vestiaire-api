@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\AdresseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ProduitImageController;
+use App\Http\Controllers\Api\DashboardController;
 
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
@@ -43,6 +44,8 @@ Route::get('/emballages', [EmballageController::class, 'index']);
 Route::get('/emballages/{id}', [EmballageController::class, 'show']);
 
 Route::middleware('auth:api')->group(function () {
+    Route::get('/admin/stats', [DashboardController::class, 'stats']);
+    
     Route::post('/produits', [ProduitController::class, 'store']);
     Route::put('/produits/{id}', [ProduitController::class, 'update']);
     Route::delete('/produits/{id}', [ProduitController::class, 'destroy']);
