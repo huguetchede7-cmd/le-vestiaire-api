@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\EmballageController;
 use App\Http\Controllers\Api\CommandeController;
 use App\Http\Controllers\Api\AdresseController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\UserController;
 
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
@@ -80,4 +81,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/commandes/{id}', [CommandeController::class, 'show']);
     Route::post('/commandes', [CommandeController::class, 'store']);
     Route::put('/commandes/{id}/statut', [CommandeController::class, 'updateStatut']);
+    Route::get('/admin/users', [UserController::class, 'index']);
+    Route::get('/admin/users/{id}', [UserController::class, 'show']);
+    
 });
