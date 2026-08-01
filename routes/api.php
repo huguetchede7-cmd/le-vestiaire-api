@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\CommandeController;
 use App\Http\Controllers\Api\AdresseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\ProduitImageController;
 
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
@@ -45,6 +46,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/produits', [ProduitController::class, 'store']);
     Route::put('/produits/{id}', [ProduitController::class, 'update']);
     Route::delete('/produits/{id}', [ProduitController::class, 'destroy']);
+    Route::get('/produits/{produitId}/images', [ProduitImageController::class, 'index']);
+    Route::post('/produit-images', [ProduitImageController::class, 'store']);
+    Route::delete('/produit-images/{id}', [ProduitImageController::class, 'destroy']);
 
     Route::post('/categories', [CategorieController::class, 'store']);
     Route::put('/categories/{id}', [CategorieController::class, 'update']);
