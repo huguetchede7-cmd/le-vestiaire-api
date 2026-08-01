@@ -85,6 +85,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/commandes', [CommandeController::class, 'index']);
     Route::get('/admin/commandes', [CommandeController::class, 'adminIndex']);
+    Route::get('/admin/commandes/{id}', [CommandeController::class, 'adminShow']);
     Route::get('/commandes/{id}', [CommandeController::class, 'show']);
     Route::post('/commandes', [CommandeController::class, 'store']);
     Route::put('/commandes/{id}/statut', [CommandeController::class, 'updateStatut']);

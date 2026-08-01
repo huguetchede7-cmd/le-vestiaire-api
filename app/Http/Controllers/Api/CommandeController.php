@@ -165,4 +165,25 @@ class CommandeController extends Controller
 
         return response()->json($commandes);
     }
+    
+    // Detail complet d'une commande (admin uniquement, n'importe quel client)
+    public function adminShow($id)
+    {
+        if (Auth::guard('api')->user()->role !== 'admin') {
+            return response()->json(['message' => 'Acces reserve aux administrateurs.'], 403);
+        }
+
+        $commande = Commande::with([
+            'user',
+            'adresse',
+            'paiement',
+            'lignes.varianteProduit.produit',
+            'lignes.varianteProduit.taille',
+            'lignes.flocage',
+            'lignes.badge',
+            'lignes.emballage',
+        ])->findOrFail($id);
+
+        return response()->json($commande);
+    }
 }
